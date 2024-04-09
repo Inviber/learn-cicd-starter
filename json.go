@@ -27,5 +27,9 @@ func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 		return
 	}
 	w.WriteHeader(code)
-	w.Write(dat)
+	resp, _ := w.Write(dat)
+	if resp != http.StatusAccepted {
+		log.Printf("We gucci")
+		return
+	}
 }
